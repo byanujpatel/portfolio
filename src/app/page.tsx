@@ -15,7 +15,7 @@ const config = {
     email: 'anujpatel2899@gmail.com',
   },
   skills: ['Full-Stack', 'AI/ML', 'Scalable Systems'],
-  stats: { years: '8+', projects: '50+', startups: '3' },
+  stats: { years: '2+', projects: '5+', startups: '3' },
   projects: [
     { name: 'Nexus AI', desc: 'Enterprise AI platform', tags: ['Next.js', 'Python', 'ML'] },
     { name: 'FlowStack', desc: 'Developer tools', tags: ['Go', 'Rust', 'K8s'] },
