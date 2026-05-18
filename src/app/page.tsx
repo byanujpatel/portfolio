@@ -9,8 +9,8 @@ const config = {
   email: 'hello@anujpatel.dev',
   socials: {
     github: 'https://github.com/byanujpatel',
-    linkedin: 'https://linkedin.com/in/anujpatel',
-    twitter: 'https://twitter.com/anujpatel',
+    linkedin: 'https://linkedin.com/in/byanujpatel',
+    twitter: 'https://twitter.com/byanujpatel',
     substack: 'https://anujpatel.substack.com',
     email: 'hello@anujpatel.dev',
   },
