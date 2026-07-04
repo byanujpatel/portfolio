@@ -1,0 +1,202 @@
+---
+import "../styles/global.css";
+import {
+  agentSuggestions,
+  audience,
+  profile,
+  projects,
+  proof,
+  valueProps,
+} from "@/data/portfolio";
+
+const title = `${profile.name} - ${profile.role}`;
+const description =
+  "Applied AI and backend engineer building LLM apps, FastAPI backends, and full-stack MVPs.";
+const contactLinks = [
+  { label: "Email", href: `mailto:${profile.email}` },
+  ...profile.socials.filter((social) => ["GitHub", "LinkedIn", "X"].includes(social.label)),
+];
+const stackKeywords = ["Python","Express", "FastAPI", "LLMs", "Observability","Evals"];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#f6efe4" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="canonical" href="https://byanujpatel.com/" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar" aria-label="Portfolio header">
+        <a class="brand" href="/" aria-label={`${profile.name} home`}>
+          <span class="brand-mark">{profile.initials}</span>
+          <span>{profile.name}</span>
+        </a>
+        <div class="status-pill">
+          <span></span>
+          {profile.status}
+        </div>
+        <nav class="quick-links" aria-label="Contact links">
+          {contactLinks.map((link) => (
+            <a href={link.href} target={link.label === "Email" ? undefined : "_blank"} rel="noreferrer">
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </header>
+
+      <main class="portfolio-card" aria-labelledby="hero-title">
+        <section class="identity-panel">
+          <p class="eyebrow">{profile.role}</p>
+          <h1 id="hero-title" aria-label="I build AI products that ship.">
+            I build AI products <span>that ship.</span>
+          </h1>
+          <p class="hero-copy">{profile.subhead}</p>
+
+          <div class="audience-row" aria-label="Target audience">
+            {audience.map((item) => <span>{item}</span>)}
+            <a class="journey-badge" href="/100-days">100 Days</a>
+          </div>
+
+          <div class="mini-proof" aria-label="Proof signals">
+            {proof.map((item) => (
+              <div>
+                <span></span>
+                <p>{item}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section class="work-panel" aria-label="Featured work">
+          <div class="panel-heading">
+            <span>Proof</span>
+            <strong>3 projects</strong>
+          </div>
+
+          <div class="project-stack">
+            {projects.map((project) => (
+              <article class="project-card">
+                <div class="project-topline">
+                  <span>{project.type}</span>
+                  <strong>{project.signal}</strong>
+                </div>
+                <h2>{project.name}</h2>
+                <p>{project.solution}</p>
+                <div class="stack-line">
+                  {project.stack.slice(0, 4).map((tool) => <span>{tool}</span>)}
+                </div>
+                <div class="project-links">
+                  {project.links.map((link) => (
+                    <a href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <aside class="signal-panel" aria-label="Why work with Anuj">
+          <div class="value-strip">
+            {valueProps.map((item) => (
+              <article>
+                <span>{item.label}</span>
+                <p>{item.text}</p>
+
+              </article>
+            ))}
+          </div>
+
+          <div class="stack-card">
+            <span>Works with</span>
+            <p>{stackKeywords.join(" / ")}</p>
+          </div>
+
+          <section id="agent" class="agent-panel" aria-label="Portfolio agent">
+            <div class="agent-head">
+              <span>Ask the agent</span>
+              <strong>&lt;1s answers</strong>
+            </div>
+            <div id="chat-log" class="chat-log" aria-live="polite">
+              <strong>Try:</strong> Why hire Anuj?
+            </div>
+            <form id="chat-form" class="chat-form">
+              <input
+                id="chat-input"
+                name="question"
+                autocomplete="off"
+                maxlength="600"
+                placeholder="Ask fit / stack / projects..."
+                required
+              />
+              <button type="submit">Ask</button>
+            </form>
+            <div class="suggestions" aria-label="Suggested questions">
+              {agentSuggestions.map((question) => (
+                <button type="button" data-question={question}>{question}</button>
+              ))}
+            </div>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script>
+      const form = document.querySelector("#chat-form");
+      const input = document.querySelector("#chat-input");
+      const log = document.querySelector("#chat-log");
+      const suggestionButtons = document.querySelectorAll("[data-question]");
+
+      function setLog(html: string) {
+        if (log) log.innerHTML = html;
+      }
+
+      async function ask(question: string) {
+        const cleanQuestion = question.trim();
+        if (!cleanQuestion) return;
+
+        setLog(`<strong>You:</strong> ${cleanQuestion}<br><br>Thinking...`);
+
+        try {
+          const response = await fetch("/api/ask", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ question: cleanQuestion }),
+          });
+          const data = await response.json();
+
+          if (!response.ok) {
+            throw new Error(data?.error || "The agent could not answer.");
+          }
+
+          setLog(`<strong>Agent:</strong> ${data.answer}`);
+        } catch (error) {
+          const message = error instanceof Error ? error.message : "Something went wrong.";
+          setLog(`<strong>Agent:</strong> ${message}`);
+        }
+      }
+
+      form?.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (!(input instanceof HTMLInputElement)) return;
+        ask(input.value);
+      });
+
+      suggestionButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const question = button.getAttribute("data-question") || "";
+          if (input instanceof HTMLInputElement) input.value = question;
+          ask(question);
+        });
+      });
+    </script>
+  </body>
+</html>

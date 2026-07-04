@@ -1,0 +1,264 @@
+---
+import "../styles/global.css";
+import { profile } from "@/data/portfolio";
+
+type DayFrontmatter = {
+  day: number;
+  title: string;
+  action: string;
+  outcome: string;
+  fear: string;
+  lesson: string;
+  mood?: string;
+  linkedIn?: string;
+  x?: string;
+  youtube?: string;
+};
+
+type DayModule = {
+  frontmatter: DayFrontmatter;
+};
+
+const dayModules = Object.entries(
+  import.meta.glob<DayModule>("../content/days/*.mdx", { eager: true }),
+);
+const days = dayModules
+  .map(([path, entry]: [string, DayModule]) => ({
+    ...entry.frontmatter,
+    slug: path.split("/").pop()?.replace(".mdx", "") ?? `day-${entry.frontmatter.day}`,
+  }))
+  .sort((a: DayFrontmatter, b: DayFrontmatter) => Number(a.day) - Number(b.day));
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Anuj Patel's 100 Days of Rejection public building and outreach log."
+    />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <title>100 Days of Rejection - {profile.name}</title>
+  </head>
+  <body>
+    <main class="journey-page">
+      <header class="journey-hero">
+        <a href="/" class="journey-back">Back to portfolio</a>
+        <p class="eyebrow">Public builder log</p>
+        <h1>100 Days of Rejection</h1>
+        <p>
+          Outreach / writing / asking / shipping before comfort.
+        </p>
+      </header>
+
+      <section class="journey-grid" aria-label="100 Days entries">
+        {days.map((day) => (
+          <article class="journey-entry">
+            <a class="journey-card-link" href={`/100-days/${day.slug}`} aria-label={`Read day ${day.day}: ${day.title}`}>
+              <div class="journey-card-top">
+                <span>Day {day.day}</span>
+                <strong>{day.mood}</strong>
+              </div>
+              <h2>{day.title}</h2>
+              <dl>
+                <div>
+                  <dt>Fear</dt>
+                  <dd>{day.fear}</dd>
+                </div>
+                <div>
+                  <dt>Did</dt>
+                  <dd>{day.action}</dd>
+                </div>
+                <div>
+                  <dt>Overcame</dt>
+                  <dd>{day.outcome}</dd>
+                </div>
+                <div>
+                  <dt>Learned</dt>
+                  <dd>{day.lesson}</dd>
+                </div>
+              </dl>
+            </a>
+            <footer>
+              <a href={`/100-days/${day.slug}`}>Read</a>
+              <div class="social-links" aria-label={`External posts for day ${day.day}`}>
+                {day.linkedIn && <a href={day.linkedIn} target="_blank" rel="noreferrer" aria-label="LinkedIn post">in</a>}
+                {day.x && <a href={day.x} target="_blank" rel="noreferrer" aria-label="X post">X</a>}
+                {day.youtube && <a href={day.youtube} target="_blank" rel="noreferrer" aria-label="YouTube video">YT</a>}
+              </div>
+            </footer>
+          </article>
+        ))}
+      </section>
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  body {
+    overflow: auto;
+  }
+
+  .journey-page {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 30px 0 72px;
+  }
+
+  .journey-hero {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 26px;
+    margin-bottom: 18px;
+  }
+
+  .journey-back {
+    display: inline-flex;
+    margin-bottom: 22px;
+    border: 1px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 9px 11px;
+    background: var(--surface);
+    font-size: 0.84rem;
+    font-weight: 850;
+    box-shadow: 4px 4px 0 var(--orange);
+  }
+
+  .journey-hero h1 {
+    max-width: 760px;
+    margin: 0 0 14px;
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 0.92;
+  }
+
+  .journey-hero p:last-child {
+    max-width: 540px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 1.08rem;
+    font-weight: 760;
+  }
+
+  .journey-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .journey-entry {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 15px;
+    background: rgba(255, 250, 241, 0.78);
+  }
+
+  .journey-entry footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .journey-card-link {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  .journey-card-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .journey-card-top span,
+  .journey-entry footer span {
+    color: var(--muted);
+    font-size: 0.74rem;
+    font-weight: 850;
+    text-transform: uppercase;
+  }
+
+  .journey-entry h2 {
+    margin: 14px 0 10px;
+    font-size: clamp(1.18rem, 2vw, 1.42rem);
+    line-height: 1.06;
+  }
+
+  .journey-entry dl {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin: 8px 0 14px;
+  }
+
+  .journey-entry dl div {
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 9px;
+    background: rgba(255, 255, 255, 0.48);
+  }
+
+  .journey-entry dl div:nth-child(2) {
+    grid-column: 1 / -1;
+    background: var(--ink);
+    color: white;
+  }
+
+  .journey-entry dl div:nth-child(2) dt {
+    color: var(--teal);
+  }
+
+  .journey-entry dl div:nth-child(2) dd {
+    color: white;
+  }
+
+  .journey-entry dt {
+    color: var(--muted);
+    font-size: 0.66rem;
+    font-weight: 900;
+    text-transform: uppercase;
+  }
+
+  .journey-entry dd {
+    margin: 5px 0 0;
+    font-size: 0.9rem;
+    font-weight: 780;
+    line-height: 1.22;
+  }
+
+  .journey-entry footer {
+    border-top: 1px solid var(--line);
+    padding-top: 12px;
+    margin-top: auto;
+  }
+
+  .journey-entry footer > a,
+  .social-links a {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 6px 9px;
+    background: rgba(255, 255, 255, 0.44);
+    font-size: 0.76rem;
+    font-weight: 900;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 6px;
+  }
+
+  @media (max-width: 820px) {
+    .journey-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 1040px) and (min-width: 821px) {
+    .journey-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
