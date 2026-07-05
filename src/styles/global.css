@@ -52,7 +52,7 @@ input {
 .page-shell {
   display: grid;
   grid-template-rows: 64px minmax(0, 1fr);
-  width: min(100%, 1440px);
+  width: min(100%, 1500px);
   height: 100dvh;
   margin: 0 auto;
   padding: 0 22px 22px;
@@ -76,6 +76,10 @@ input {
 .brand {
   gap: 10px;
   font-weight: 850;
+}
+
+.brand-name-short {
+  display: none;
 }
 
 .brand-mark {
@@ -117,19 +121,50 @@ input {
 }
 
 .quick-links a {
+  display: inline-grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
   border: 1px solid var(--ink);
   border-radius: var(--radius);
-  padding: 9px 11px;
   background: var(--surface);
-  font-size: 0.84rem;
-  font-weight: 850;
   box-shadow: 4px 4px 0 var(--orange);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.quick-links a:hover {
+  background: white;
+  box-shadow: 2px 2px 0 var(--orange);
+  transform: translate(2px, 2px);
+}
+
+.quick-links svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.quick-links a[aria-label="GitHub"] svg,
+.quick-links a[aria-label="LinkedIn"] svg,
+.quick-links a[aria-label="X"] svg {
+  fill: currentColor;
+  stroke: none;
 }
 
 .portfolio-card {
   display: grid;
-  grid-template-columns: minmax(270px, 0.82fr) minmax(400px, 1.08fr) minmax(306px, 0.8fr);
+  grid-template-columns: minmax(390px, 0.98fr) minmax(440px, 1.06fr) minmax(320px, 0.8fr);
   gap: 14px;
+  align-self: start;
+  width: 100%;
+  max-height: 860px;
   min-height: 0;
   padding-top: 16px;
 }
@@ -191,7 +226,8 @@ p {
 
 h1 {
   margin-bottom: 16px;
-  font-size: clamp(3.35rem, 5.9vw, 6.8rem);
+  max-width: 7.3ch;
+  font-size: clamp(3.35rem, 5.1vw, 6rem);
   line-height: 0.9;
   letter-spacing: 0;
 }
@@ -488,7 +524,7 @@ h1 span {
   }
 
   h1 {
-    font-size: clamp(3rem, 5.1vw, 5.8rem);
+    font-size: clamp(3rem, 4.6vw, 5.25rem);
     margin-bottom: 12px;
   }
 
@@ -517,7 +553,7 @@ h1 span {
   }
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 1199px) {
   body {
     overflow: auto;
   }
@@ -528,16 +564,31 @@ h1 span {
   }
 
   .portfolio-card {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(280px, 0.86fr) minmax(380px, 1.14fr);
+    max-height: none;
     padding-bottom: 22px;
+  }
+
+  .signal-panel {
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 0.95fr) minmax(260px, 0.7fr) minmax(320px, 1fr);
+    grid-template-rows: none;
   }
 
   .project-stack {
     grid-template-rows: none;
   }
+}
+
+@media (max-width: 900px) {
+  .portfolio-card {
+    grid-template-columns: 1fr;
+  }
 
   .signal-panel {
+    grid-column: auto;
     grid-template-rows: none;
+    grid-template-columns: 1fr;
   }
 }
 
@@ -547,7 +598,8 @@ h1 span {
   }
 
   .topbar {
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, auto) minmax(0, 1fr);
+    gap: 10px;
     min-height: 62px;
   }
 
@@ -555,8 +607,36 @@ h1 span {
     display: none;
   }
 
-  .quick-links a:not(:first-child) {
+  .brand {
+    min-width: 0;
+  }
+
+  .brand-name-full {
     display: none;
+  }
+
+  .brand-name-short {
+    display: inline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .quick-links {
+    justify-content: end;
+    gap: 7px;
+    min-width: 0;
+  }
+
+  .quick-links a {
+    width: 42px;
+    height: 42px;
+    box-shadow: 3px 3px 0 var(--orange);
+  }
+
+  .quick-links svg {
+    width: 22px;
+    height: 22px;
   }
 
   .portfolio-card {
@@ -564,7 +644,8 @@ h1 span {
   }
 
   h1 {
-    font-size: clamp(3.2rem, 16vw, 4.6rem);
+    max-width: 7.1ch;
+    font-size: clamp(3rem, 15vw, 4.15rem);
   }
 
   .value-strip {
