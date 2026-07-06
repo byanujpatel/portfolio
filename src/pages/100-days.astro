@@ -28,6 +28,7 @@ const days = dayModules
     slug: path.split("/").pop()?.replace(".mdx", "") ?? `day-${entry.frontmatter.day}`,
   }))
   .sort((a: DayFrontmatter, b: DayFrontmatter) => Number(a.day) - Number(b.day));
+const latestDay = days.at(-1)?.day ?? 0;
 ---
 
 <!doctype html>
@@ -48,9 +49,12 @@ const days = dayModules
         <a href="/" class="journey-back">Back to portfolio</a>
         <p class="eyebrow">Public builder log</p>
         <h1>100 Days of Rejection</h1>
-        <p>
-          Outreach / writing / asking / shipping before comfort.
-        </p>
+        <p>Daily outreach, writing, asking, and shipping reps.</p>
+        <div class="journey-status" aria-label="Challenge status">
+          <span>Active challenge</span>
+          <span>Started July 5, 2026</span>
+          <strong>Day {latestDay}/100</strong>
+        </div>
       </header>
 
       <section class="journey-grid" aria-label="100 Days entries">
@@ -138,6 +142,31 @@ const days = dayModules
     color: var(--muted);
     font-size: 1.08rem;
     font-weight: 760;
+  }
+
+  .journey-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .journey-status span,
+  .journey-status strong {
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 7px 10px;
+    background: rgba(255, 255, 255, 0.48);
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 850;
+    white-space: nowrap;
+  }
+
+  .journey-status strong {
+    border-color: rgba(34, 184, 166, 0.42);
+    background: rgba(34, 184, 166, 0.1);
+    color: var(--teal);
   }
 
   .journey-grid {
