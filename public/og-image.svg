@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M 44 0 L 0 0 0 44" fill="none" stroke="rgba(16,18,22,0.06)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="#f6efe4"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <g font-family="Helvetica, Arial, sans-serif">
+    <rect x="64" y="56" width="52" height="52" rx="12" fill="#ff5630"/>
+    <text x="90" y="91" font-size="24" font-weight="800" fill="#ffffff" text-anchor="middle">AP</text>
+    <text x="132" y="80" font-size="26" font-weight="800" fill="#101216">Anuj Patel</text>
+    <text x="132" y="106" font-size="17" font-weight="600" fill="#626a77">byanujpatel · Applied AI + Backend Engineer</text>
+
+    <rect x="920" y="66" rx="22" width="216" height="40" fill="#101216"/>
+    <circle cx="946" cy="86" r="5" fill="#22b8a6"/>
+    <text x="962" y="92" font-size="15" font-weight="700" fill="#ffffff">Open to work</text>
+
+    <text x="64" y="270" font-size="96" font-weight="900" fill="#101216">I build AI products</text>
+    <text x="64" y="380" font-size="96" font-weight="900" fill="#ff5630">that ship.</text>
+
+    <text x="64" y="450" font-size="28" font-weight="600" fill="#626a77">LLM apps / FastAPI / agents / full-stack MVPs</text>
+
+    <rect x="64" y="492" rx="18" width="120" height="36" fill="#fffaf1" stroke="rgba(16,18,22,0.14)"/>
+    <text x="124" y="516" font-size="16" font-weight="700" fill="#626a77" text-anchor="middle">Python</text>
+    <rect x="196" y="492" rx="18" width="104" height="36" fill="#fffaf1" stroke="rgba(16,18,22,0.14)"/>
+    <text x="248" y="516" font-size="16" font-weight="700" fill="#626a77" text-anchor="middle">FastAPI</text>
+    <rect x="312" y="492" rx="18" width="88" height="36" fill="#fffaf1" stroke="rgba(16,18,22,0.14)"/>
+    <text x="356" y="516" font-size="16" font-weight="700" fill="#626a77" text-anchor="middle">LLMs</text>
+    <rect x="412" y="492" rx="18" width="96" height="36" fill="#fffaf1" stroke="rgba(16,18,22,0.14)"/>
+    <text x="460" y="516" font-size="16" font-weight="700" fill="#626a77" text-anchor="middle">Agents</text>
+    <rect x="520" y="492" rx="18" width="76" height="36" fill="#fffaf1" stroke="rgba(16,18,22,0.14)"/>
+    <text x="558" y="516" font-size="16" font-weight="700" fill="#626a77" text-anchor="middle">RAG</text>
+
+    <line x1="64" y1="570" x2="1136" y2="570" stroke="rgba(16,18,22,0.14)" stroke-width="1"/>
+    <text x="64" y="600" font-size="18" font-weight="700" fill="#626a77">Content Repurposing Engine · TrendChain AI · Health Label</text>
+    <text x="1136" y="600" font-size="20" font-weight="800" fill="#101216" text-anchor="end">byanujpatel.online</text>
+  </g>
+</svg>

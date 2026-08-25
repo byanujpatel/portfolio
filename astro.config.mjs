@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import vercel from "@astrojs/vercel";
 
 export default defineConfig({
-  site: "https://byanujpatel.com",
+  site: "https://byanujpatel.online",
   output: "server",
   adapter: vercel(),
   integrations: [mdx(), sitemap()],

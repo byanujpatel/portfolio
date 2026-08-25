@@ -3,15 +3,76 @@ import "../styles/global.css";
 import {
   agentSuggestions,
   audience,
+  faqs,
   profile,
   projects,
   proof,
   valueProps,
 } from "@/data/portfolio";
 
-const title = `${profile.name} - ${profile.role}`;
+const site = "https://byanujpatel.online";
+const ogImage = `${site}/og-image.png`;
+const title = "Anuj Patel (@byanujpatel) — Applied AI & Backend Engineer";
 const description =
-  "Applied AI and backend engineer building LLM apps, FastAPI backends, and full-stack MVPs.";
+  "Portfolio of Anuj Patel (@byanujpatel): applied AI engineer building LLM apps, FastAPI backends, AI agents, RAG pipelines and full-stack MVPs that ship. Open to AI / backend / full-stack roles.";
+const keywords =
+  "Anuj Patel, byanujpatel, AI engineer portfolio, applied AI engineer, LLM engineer, agentic AI engineer, FastAPI developer, RAG pipelines, full-stack developer India, hire AI engineer";
+
+const schemaGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${site}/#person`,
+      name: "Anuj Patel",
+      alternateName: "byanujpatel",
+      url: `${site}/`,
+      image: ogImage,
+      email: `mailto:${profile.email}`,
+      jobTitle: profile.role,
+      description:
+        "Applied AI and backend engineer building LLM apps, FastAPI backends, AI agents, RAG workflows and full-stack MVPs.",
+      address: { "@type": "PostalAddress", addressCountry: "IN" },
+      knowsAbout: [
+        "LLM applications",
+        "AI agents",
+        "Agentic workflows",
+        "RAG pipelines",
+        "FastAPI",
+        "Python",
+        "Node.js",
+        "Express",
+        "LLM evals and observability",
+        "Full-stack MVP development",
+      ],
+      sameAs: profile.socials.map((social) => social.href),
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site}/#website`,
+      url: `${site}/`,
+      name: "Anuj Patel — Portfolio",
+      publisher: { "@id": `${site}/#person` },
+      inLanguage: "en",
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${site}/#profilepage`,
+      url: `${site}/`,
+      mainEntity: { "@id": `${site}/#person` },
+      isPartOf: { "@id": `${site}/#website` },
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${site}/#faq`,
+      mainEntity: faqs.map((faq) => ({
+        "@type": "Question",
+        name: faq.q,
+        acceptedAnswer: { "@type": "Answer", text: faq.a },
+      })),
+    },
+  ],
+};
 const contactLinks = [
   { label: "Email", icon: "mail", href: `mailto:${profile.email}` },
   ...profile.socials
@@ -29,14 +90,33 @@ const stackKeywords = ["Python","Express", "FastAPI", "LLMs", "Observability","E
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content={profile.name} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+    <link rel="canonical" href={`${site}/`} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Anuj Patel — Portfolio" />
+    <meta property="og:url" content={`${site}/`} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Anuj Patel — Applied AI & Backend Engineer" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:creator" content="@byanujpatel" />
+
     <meta name="theme-color" content="#f6efe4" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="canonical" href="https://byanujpatel.com/" />
-    <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />
   </head>
   <body>
     <div class="page-shell">
@@ -97,7 +177,6 @@ const stackKeywords = ["Python","Express", "FastAPI", "LLMs", "Observability","E
 
           <div class="audience-row" aria-label="Target audience">
             {audience.map((item) => <span>{item}</span>)}
-            <a class="journey-badge" href="/100-days">100 Days</a>
           </div>
 
           <div class="mini-proof" aria-label="Proof signals">
@@ -181,6 +260,28 @@ const stackKeywords = ["Python","Express", "FastAPI", "LLMs", "Observability","E
           </section>
         </aside>
       </main>
+
+      <section class="faq-section" aria-labelledby="faq-title">
+        <h2 id="faq-title">FAQ</h2>
+        <div class="faq-grid">
+          {faqs.map((faq) => (
+            <details class="faq-item">
+              <summary>{faq.q}</summary>
+              <p>{faq.a}</p>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <footer class="site-footer" aria-label="Site footer">
+        <p>© {new Date().getFullYear()} Anuj Patel · Applied AI + Backend Engineer · India</p>
+        <nav aria-label="Footer social links">
+          {profile.socials.map((social) => (
+            <a href={social.href} target="_blank" rel="noreferrer">{social.label}</a>
+          ))}
+          <a href={`mailto:${profile.email}`}>Email</a>
+        </nav>
+      </footer>
     </div>
 
     <script>

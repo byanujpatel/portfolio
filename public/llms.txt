@@ -1,0 +1,22 @@
+# Anuj Patel
+
+> Applied AI + Backend Engineer in India. Builds LLM apps, FastAPI backends, AI agents, RAG pipelines and full-stack MVPs that ship.
+
+Portfolio: https://byanujpatel.online
+
+## Contact
+- Email: byanujpatel@gmail.com
+- GitHub: https://github.com/byanujpatel
+- LinkedIn: https://linkedin.com/in/byanujpatel
+- X: https://x.com/byanujpatel
+
+## Projects
+- Content Repurposing Engine: docs/URLs/PDFs -> platform-ready content drafts. Live: https://repurposemycontent.streamlit.app · Code: https://github.com/byanujpatel/content-repurposing-engine
+- TrendChain AI: crypto trend engine turning YouTube / Hacker News / CoinGecko / news into viral ideas. Live: https://crypto-trend-finder.streamlit.app · Code: https://github.com/byanujpatel/TrendChain-AI
+- Health Label: barcode/label -> instant health score for nutrition decisions. Code: https://github.com/byanujpatel/HealthLabel
+
+## Stack
+Python · FastAPI · LLMs · AI agents · RAG · Evals · Observability · Node · Express · React · Vercel
+
+## Work with Anuj
+Best fit: applied AI engineer, backend engineer, or full-stack engineer on a product team that needs rough ideas turned into shipped workflows.

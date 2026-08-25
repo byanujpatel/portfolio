@@ -1,0 +1,50 @@
+# Anuj Patel — Applied AI & Backend Engineer
+
+Anuj Patel (handle: byanujpatel) is an applied AI and backend engineer based in India. He builds LLM applications, FastAPI backends, AI agent workflows, RAG pipelines and full-stack MVPs, with a bias for shipping working products over slide decks.
+
+- Portfolio: https://byanujpatel.online
+- Email: byanujpatel@gmail.com
+- GitHub: https://github.com/byanujpatel
+- LinkedIn: https://linkedin.com/in/byanujpatel
+- X: https://x.com/byanujpatel
+
+## Projects
+
+### Content Repurposing Engine
+AI content engine. Creators waste hours adapting one idea for each platform; this turns docs, URLs and PDFs into ready-to-post drafts across platforms in under 10 seconds per run.
+Stack: Python, FastAPI, LLMs, Streamlit.
+Live: https://repurposemycontent.streamlit.app
+Code: https://github.com/byanujpatel/content-repurposing-engine
+
+### TrendChain AI
+Crypto trend engine. Crypto creators need timely ideas from noisy live sources; TrendChain turns YouTube, Hacker News, CoinGecko and news into viral content ideas with live signals.
+Stack: Python, LLMs, CoinGecko API, Hacker News API.
+Live: https://crypto-trend-finder.streamlit.app
+Code: https://github.com/byanujpatel/TrendChain-AI
+
+### Health Label
+Health decision app. Nutrition labels are hard to judge quickly; scan a barcode or label and get an instant health score.
+Stack: Python, ML, external nutrition APIs, UX.
+Code: https://github.com/byanujpatel/HealthLabel
+
+## Technical skills
+Frontend: React, Next.js, TypeScript, MERN.
+Backend: Node, Express, FastAPI, REST APIs.
+AI: LLM apps, agents, evals, RAG.
+Shipping: observability, Vercel, GitHub, rapid MVPs.
+
+## How to work with Anuj
+Best fit roles: applied AI engineer, backend engineer, or full-stack engineer on a product team that needs someone who can turn rough ideas into shipped workflows.
+
+FAQ:
+Q: What role is Anuj best fit for?
+A: Applied AI engineer, backend engineer, or full-stack engineer on a product team that needs someone who can turn rough ideas into shipped workflows.
+
+Q: Is he only an AI engineer?
+A: No. AI is the product layer he is leaning into, but the core strength is backend and full-stack shipping.
+
+Q: What kind of problems should you contact him for?
+A: LLM apps, API-heavy products, MVPs, internal AI tools, RAG workflows, agent prototypes, and product demos that need to become real.
+
+Q: What makes this portfolio different?
+A: It shows the work, the operating style, and the public learning loop in one place instead of hiding behind generic resume language.

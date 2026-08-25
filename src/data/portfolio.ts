@@ -115,17 +115,6 @@ export const faqs = [
   },
 ] as const;
 
-export const journey = {
-  title: "100 Days of Rejection",
-  text: "A public challenge to practice outreach, publishing, asking, pitching, and staying visible while building.",
-  entries: [
-    "Cold DMs and outreach",
-    "Writing in public",
-    "Shipping before comfort",
-    "Turning fear into reps",
-  ],
-} as const;
-
 export const agentSuggestions = [
   "Why hire Anuj?",
   "Best project?",
