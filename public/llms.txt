@@ -1,6 +1,6 @@
 # Anuj Patel
 
-> Applied AI + Backend Engineer in India. Builds LLM apps, FastAPI backends, AI agents, RAG pipelines and full-stack MVPs that ship.
+> Applied AI + Voice AI Engineer in India. Builds voice agents, LLM apps, FastAPI backends, AI agents, RAG pipelines and full-stack MVPs that ship.
 
 Portfolio: https://byanujpatel.online
 
@@ -11,9 +11,10 @@ Portfolio: https://byanujpatel.online
 - X: https://x.com/byanujpatel
 
 ## Projects
+- VANI: voice-first AI assistant built on Sarvam AI — talk, ask, get answers. Details: https://byanujpatel.online/projects/vani/ · Demo: https://x.com/byanujpatel/status/2089730103928598667 · Code: https://github.com/byanujpatel/Sarvam-AI/tree/main/VANI-Project
+- Smriti: voice-first health memory and companion app designed for families. Details: https://byanujpatel.online/projects/smriti/ · Live: https://smriti-health-companion.onrender.com · Code: https://github.com/byanujpatel/Smriti-Health-Companion
 - Content Repurposing Engine: docs/URLs/PDFs -> platform-ready content drafts. Live: https://repurposemycontent.streamlit.app · Code: https://github.com/byanujpatel/content-repurposing-engine
 - TrendChain AI: crypto trend engine turning YouTube / Hacker News / CoinGecko / news into viral ideas. Live: https://crypto-trend-finder.streamlit.app · Code: https://github.com/byanujpatel/TrendChain-AI
-- Health Label: barcode/label -> instant health score for nutrition decisions. Code: https://github.com/byanujpatel/HealthLabel
 
 ## Stack
 Python · FastAPI · LLMs · AI agents · RAG · Evals · Observability · Node · Express · React · Vercel

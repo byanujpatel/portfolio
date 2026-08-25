@@ -1,6 +1,6 @@
-# Anuj Patel — Applied AI & Backend Engineer
+# Anuj Patel — Applied AI & Voice AI Engineer
 
-Anuj Patel (handle: byanujpatel) is an applied AI and backend engineer based in India. He builds LLM applications, FastAPI backends, AI agent workflows, RAG pipelines and full-stack MVPs, with a bias for shipping working products over slide decks.
+Anuj Patel (handle: byanujpatel) is an applied AI and Voice AI engineer based in India. He specializes in voice-first applications and conversational agents, alongside LLM applications, FastAPI backends, AI agent workflows, RAG pipelines and full-stack MVPs, with a bias for shipping working products over slide decks.
 
 - Portfolio: https://byanujpatel.online
 - Email: byanujpatel@gmail.com
@@ -9,6 +9,18 @@ Anuj Patel (handle: byanujpatel) is an applied AI and backend engineer based in 
 - X: https://x.com/byanujpatel
 
 ## Projects
+
+### VANI
+Voice AI agent. A specialized voice-first AI system built on Sarvam AI — users talk, ask, and get spoken answers instead of typing.
+Stack: Sarvam AI, Voice, LLMs, Python.
+Demo: https://x.com/byanujpatel/status/2089730103928598667
+Code: https://github.com/byanujpatel/Sarvam-AI/tree/main/VANI-Project
+
+### Smriti
+Voice-first health memory and companion application designed specifically for families — tracks medications, routines, and health updates through conversation.
+Stack: Voice, Memory, LLMs, Python.
+Live: https://smriti-health-companion.onrender.com
+Code: https://github.com/byanujpatel/Smriti-Health-Companion
 
 ### Content Repurposing Engine
 AI content engine. Creators waste hours adapting one idea for each platform; this turns docs, URLs and PDFs into ready-to-post drafts across platforms in under 10 seconds per run.
@@ -21,11 +33,6 @@ Crypto trend engine. Crypto creators need timely ideas from noisy live sources; 
 Stack: Python, LLMs, CoinGecko API, Hacker News API.
 Live: https://crypto-trend-finder.streamlit.app
 Code: https://github.com/byanujpatel/TrendChain-AI
-
-### Health Label
-Health decision app. Nutrition labels are hard to judge quickly; scan a barcode or label and get an instant health score.
-Stack: Python, ML, external nutrition APIs, UX.
-Code: https://github.com/byanujpatel/HealthLabel
 
 ## Technical skills
 Frontend: React, Next.js, TypeScript, MERN.

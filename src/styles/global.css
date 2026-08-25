@@ -160,12 +160,11 @@ input {
 .portfolio-card {
   display: grid;
   grid-template-columns: minmax(390px, 0.98fr) minmax(440px, 1.06fr) minmax(320px, 0.8fr);
-  gap: 14px;
+  gap: 20px;
   align-self: start;
   width: 100%;
-  max-height: 860px;
   min-height: 0;
-  padding-top: 16px;
+  padding-top: 20px;
 }
 
 .identity-panel,
@@ -325,8 +324,7 @@ h1 span {
 
 .project-stack {
   display: grid;
-  grid-template-rows: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: 14px;
   min-height: 0;
   flex: 1;
 }
@@ -734,4 +732,48 @@ h1 span {
   .faq-grid {
     grid-template-columns: 1fr;
   }
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0 18px;
+}
+
+.cta-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 11px 18px;
+  background: var(--ink);
+  color: white;
+  font-size: 0.92rem;
+  font-weight: 900;
+  box-shadow: 4px 4px 0 var(--orange);
+}
+
+.cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 11px 18px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
+.project-card--featured {
+  border-color: var(--ink);
+  background: white;
+  box-shadow: 0 8px 24px rgba(16, 18, 22, 0.07);
+}
+
+.project-card--featured .project-topline strong {
+  color: var(--orange);
 }

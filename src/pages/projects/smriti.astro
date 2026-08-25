@@ -1,0 +1,125 @@
+---
+import "../../styles/global.css";
+const site = "https://byanujpatel.online";
+const ogImage = `${site}/og-image.png`;
+const title = "Smriti — Voice Health Memory Companion for Families | Anuj Patel (@byanujpatel)";
+const description = "Smriti is a voice-first health memory companion for families by Anuj Patel. Remember meds, routines and updates by talking — built with LiveKit + LLMs. Try the live app.";
+const canonical = `${site}/projects/smriti/`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${canonical}#app`,
+      name: "Smriti",
+      applicationCategory: "HealthApplication",
+      operatingSystem: "Web",
+      description: "Voice-first health memory and companion for families — remember medications and routines by talking.",
+      author: { "@id": `${site}/#person` },
+      url: canonical,
+      codeRepository: "https://github.com/byanujpatel/Smriti-Health-Companion",
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${canonical}#breadcrumbs`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${site}/` },
+        { "@type": "ListItem", position: 2, name: "Smriti" },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${canonical}#faq`,
+      mainEntity: [
+        { "@type": "Question", name: "What does Smriti do?", acceptedAnswer: { "@type": "Answer", text: "Smriti lets families track medications, routines and health updates by voice. Speak a reminder, ask what you said yesterday — it remembers." } },
+        { "@type": "Question", name: "Can I try it live?", acceptedAnswer: { "@type": "Answer", text: "Yes — open the live app, allow mic, and talk. It uses LiveKit realtime voice and LLM memory." } },
+      ],
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content="Smriti health companion, voice health memory app, voice memory for families, LiveKit health agent, hire voice AI developer" />
+  <meta name="author" content="Anuj Patel" />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  <meta name="theme-color" content="#f6efe4" />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar" aria-label="Header">
+      <a class="brand" href="/"><span class="brand-mark">AP</span><span class="brand-name-full">Anuj Patel</span><span class="brand-name-short">Anuj</span></a>
+      <div class="status-pill"><span></span> Open: AI / backend / full-stack</div>
+      <nav class="quick-links" aria-label="Contact"><a href="mailto:byanujpatel@gmail.com" aria-label="Email">✉</a><a href="https://github.com/byanujpatel" target="_blank" rel="noreferrer" aria-label="GitHub">GH</a><a href="https://linkedin.com/in/byanujpatel" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a><a href="https://x.com/byanujpatel" target="_blank" rel="noreferrer" aria-label="X">X</a></nav>
+    </header>
+
+    <main class="project-detail" aria-labelledby="smriti-title">
+      <a class="journey-back" href="/" style="display:inline-flex;margin:18px 0;border:1px solid var(--ink);border-radius:var(--radius);padding:9px 11px;background:var(--surface);font-weight:850;box-shadow:4px 4px 0 var(--orange)">← Back</a>
+      <p class="eyebrow">Voice health companion · LiveKit · Memory · Featured</p>
+      <h1 id="smriti-title">Smriti — voice health memory</h1>
+      <p class="hero-copy">Families juggle meds, routines and health updates. <strong>Smriti</strong> remembers by voice — speak a reminder, ask "what did I say yesterday?", get a spoken answer. Hiring a <strong>voice AI / health companion developer</strong>? Start here.</p>
+
+      <div class="hero-cta">
+        <a class="cta-primary" href="https://smriti-health-companion.onrender.com/" target="_blank" rel="noreferrer">Try Smriti Live →</a>
+        <a class="cta-secondary" href="https://github.com/byanujpatel/Smriti-Health-Companion" target="_blank" rel="noreferrer">View Code</a>
+      </div>
+
+      <section class="detail-grid">
+        <article>
+          <h2>Problem</h2>
+          <p>Tracking family health — medicines, diet, symptoms — usually means typing into apps no one opens. Important details slip.</p>
+        </article>
+        <article>
+          <h2>Solution</h2>
+          <p>Smriti is <strong>voice-first</strong>: say "remember mom took medicine at 8pm" and later ask "did mom take her medicine?" It stores, recalls, and speaks back with LiveKit realtime + LLM memory.</p>
+        </article>
+        <article>
+          <h2>How it works</h2>
+          <p>Voice captured via LiveKit → transcribed → LLM stores with timestamp → recall on voice query. FastAPI backend, persistent memory, no forms.</p>
+        </article>
+        <article>
+          <h2>Stack</h2>
+          <p>LiveKit · Voice pipeline · LLMs · Memory · FastAPI · Python</p>
+        </article>
+      </section>
+
+      <section class="faq-section">
+        <h2>FAQ — Smriti</h2>
+        <div class="faq-grid">
+          <details class="faq-item"><summary>Is my health data private?</summary><p>Built with family use in mind — memory scoped to your session. Self-host option available for production.</p></details>
+          <details class="faq-item"><summary>Can you build a Smriti-like app for my business?</summary><p>Yes. Same pattern works for clinics, elder care, or ops teams — voice memory + recall. Prototype in 5-10 days.</p></details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><p>© {new Date().getFullYear()} Anuj Patel · Applied AI + Voice AI Engineer · India</p><nav><a href="mailto:byanujpatel@gmail.com">Email</a><a href="https://github.com/byanujpatel" target="_blank" rel="noreferrer">GitHub</a></nav></footer>
+  </div>
+</body>
+</html>
+
+<style>
+  .project-detail { padding-top: 10px; }
+  .project-detail h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); margin: 6px 0 12px; line-height: 0.95; }
+  .detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 18px 0; }
+  .detail-grid article { border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; background: rgba(255,250,241,0.78); }
+  .detail-grid h2 { font-size: 0.9rem; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+  .detail-grid p { margin: 0; color: var(--ink); font-weight: 650; line-height: 1.5; font-size: 0.95rem; }
+  @media (max-width: 800px) { .detail-grid { grid-template-columns: 1fr; } }
+</style>

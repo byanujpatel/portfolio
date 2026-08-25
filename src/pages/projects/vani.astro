@@ -1,0 +1,127 @@
+---
+import "../../styles/global.css";
+const site = "https://byanujpatel.online";
+const ogImage = `${site}/og-image.png`;
+const title = "VANI — Voice AI Agent on Sarvam AI | Anuj Patel (@byanujpatel)";
+const description = "VANI is a multilingual voice-first AI assistant built on Sarvam AI by Anuj Patel. Speak in your language, get spoken answers via LiveKit STT → LLM → TTS. Demo and code inside.";
+const canonical = `${site}/projects/vani/`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${canonical}#app`,
+      name: "VANI",
+      applicationCategory: "VoiceApplication",
+      operatingSystem: "Web",
+      description: "Multilingual voice-first AI assistant built on Sarvam AI with LiveKit realtime pipeline.",
+      author: { "@id": `${site}/#person` },
+      url: canonical,
+      codeRepository: "https://github.com/byanujpatel/Sarvam-AI/tree/main/VANI-Project",
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${canonical}#breadcrumbs`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${site}/` },
+        { "@type": "ListItem", position: 2, name: "VANI" },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${canonical}#faq`,
+      mainEntity: [
+        { "@type": "Question", name: "Can you build voice agents with Sarvam AI and LiveKit?", acceptedAnswer: { "@type": "Answer", text: "Yes. VANI uses Sarvam AI for multilingual STT/TTS and LiveKit for realtime audio transport. Pipeline: user speech → Sarvam STT → LLM → Sarvam TTS → LiveKit playback." } },
+        { "@type": "Question", name: "How much does a VANI-like voice agent cost?", acceptedAnswer: { "@type": "Answer", text: "Prototype in 5-10 days. Cost is usage-based (STT/LLM/TTS minutes) plus build fee. Contact for a 15-min scoping call." } },
+      ],
+    },
+  ],
+};
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="keywords" content="VANI, Sarvam AI voice agent, multilingual voice AI India, LiveKit voice pipeline, hire Sarvam AI developer, voice AI engineer" />
+  <meta name="author" content="Anuj Patel" />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  <meta name="theme-color" content="#f6efe4" />
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar" aria-label="Header">
+      <a class="brand" href="/"><span class="brand-mark">AP</span><span class="brand-name-full">Anuj Patel</span><span class="brand-name-short">Anuj</span></a>
+      <div class="status-pill"><span></span> Open: AI / backend / full-stack</div>
+      <nav class="quick-links" aria-label="Contact"><a href="mailto:byanujpatel@gmail.com" aria-label="Email">✉</a><a href="https://github.com/byanujpatel" target="_blank" rel="noreferrer" aria-label="GitHub">GH</a><a href="https://linkedin.com/in/byanujpatel" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a><a href="https://x.com/byanujpatel" target="_blank" rel="noreferrer" aria-label="X">X</a></nav>
+    </header>
+
+    <main class="project-detail" aria-labelledby="vani-title">
+      <a class="journey-back" href="/" style="display:inline-flex;margin:18px 0;border:1px solid var(--ink);border-radius:var(--radius);padding:9px 11px;background:var(--surface);font-weight:850;box-shadow:4px 4px 0 var(--orange)">← Back</a>
+      <p class="eyebrow">Voice AI agent · Sarvam AI · LiveKit · Featured</p>
+      <h1 id="vani-title">VANI — multilingual voice agent</h1>
+      <p class="hero-copy">Text-first AI excludes people who prefer to speak. VANI is a voice-first assistant built on <strong>Sarvam AI</strong> — talk in your language, ask anything, get a spoken answer. Hiring a <strong>Sarvam AI / LiveKit voice developer</strong>? This is the demo.</p>
+
+      <div class="hero-cta">
+        <a class="cta-primary" href="https://x.com/byanujpatel/status/2089730103928598667" target="_blank" rel="noreferrer">Watch Demo</a>
+        <a class="cta-secondary" href="https://github.com/byanujpatel/Sarvam-AI/tree/main/VANI-Project" target="_blank" rel="noreferrer">View Code</a>
+      </div>
+
+      <section class="detail-grid">
+        <article>
+          <h2>Problem</h2>
+          <p>Most AI products assume typing in English. In India, that locks out millions. Voice is faster, more natural, and language-aware — but wiring STT → LLM → TTS with low latency is hard.</p>
+        </article>
+        <article>
+          <h2>Solution</h2>
+          <p>VANI uses <strong>Sarvam AI</strong> for multilingual speech-to-text and text-to-speech, with a <strong>LiveKit</strong> realtime pipeline: user speaks → Sarvam STT → LLM → Sarvam TTS → playback. FastAPI backend handles memory and logic. No typing needed.</p>
+        </article>
+        <article>
+          <h2>How it works</h2>
+          <p>LiveKit transports audio. Sarvam handles Indian languages. LLM reasons. TTS speaks back. The pieces are modular — swap models, add RAG, or connect to your APIs.</p>
+        </article>
+        <article>
+          <h2>Stack</h2>
+          <p>Sarvam AI · LiveKit · Python · LLMs · FastAPI · Voice pipeline</p>
+        </article>
+      </section>
+
+      <section class="faq-section">
+        <h2>FAQ — VANI</h2>
+        <div class="faq-grid">
+          <details class="faq-item"><summary>Can you build this for my product?</summary><p>Yes. I ship voice agents for support, onboarding, and internal tools — prototype in 5-10 days, then harden for production.</p></details>
+          <details class="faq-item"><summary>Which languages?</summary><p>Whatever Sarvam AI supports — Hindi, English and more Indian languages, extensible to others.</p></details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><p>© {new Date().getFullYear()} Anuj Patel · Applied AI + Voice AI Engineer · India</p><nav><a href="mailto:byanujpatel@gmail.com">Email</a><a href="https://github.com/byanujpatel" target="_blank" rel="noreferrer">GitHub</a></nav></footer>
+  </div>
+</body>
+</html>
+
+<style>
+  .project-detail { padding-top: 10px; }
+  .project-detail h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); margin: 6px 0 12px; line-height: 0.95; }
+  .detail-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 18px 0; }
+  .detail-grid article { border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; background: rgba(255,250,241,0.78); }
+  .detail-grid h2 { font-size: 0.9rem; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+  .detail-grid p { margin: 0; color: var(--ink); font-weight: 650; line-height: 1.5; font-size: 0.95rem; }
+  @media (max-width: 800px) { .detail-grid { grid-template-columns: 1fr; } }
+</style>

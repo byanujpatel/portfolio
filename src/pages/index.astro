@@ -12,11 +12,11 @@ import {
 
 const site = "https://byanujpatel.online";
 const ogImage = `${site}/og-image.png`;
-const title = "Anuj Patel (@byanujpatel) — Applied AI & Backend Engineer";
+const title = "Anuj Patel (@byanujpatel) — Applied AI & Voice AI Engineer | LiveKit, Sarvam AI, LLM Apps";
 const description =
-  "Portfolio of Anuj Patel (@byanujpatel): applied AI engineer building LLM apps, FastAPI backends, AI agents, RAG pipelines and full-stack MVPs that ship. Open to AI / backend / full-stack roles.";
+  "Hire Anuj Patel (@byanujpatel) — Applied AI & Voice AI engineer in India. Builds voice agents with LiveKit + Sarvam AI, LLM apps, RAG with memory, FastAPI backends and full-stack MVPs. Prototype in 5-10 days. Try Smriti live.";
 const keywords =
-  "Anuj Patel, byanujpatel, AI engineer portfolio, applied AI engineer, LLM engineer, agentic AI engineer, FastAPI developer, RAG pipelines, full-stack developer India, hire AI engineer";
+  "Anuj Patel, byanujpatel, hire voice AI developer, voice AI engineer, LiveKit developer, Sarvam AI developer, conversational AI freelancer, RAG chatbot memory, hire AI engineer India, voice agent developer";
 
 const schemaGraph = {
   "@context": "https://schema.org",
@@ -31,9 +31,14 @@ const schemaGraph = {
       email: `mailto:${profile.email}`,
       jobTitle: profile.role,
       description:
-        "Applied AI and backend engineer building LLM apps, FastAPI backends, AI agents, RAG workflows and full-stack MVPs.",
+        "Applied AI and Voice AI engineer building voice agents, LLM apps, FastAPI backends, RAG workflows and full-stack MVPs.",
       address: { "@type": "PostalAddress", addressCountry: "IN" },
       knowsAbout: [
+        "Voice AI",
+        "Voice agents",
+        "Conversational AI",
+        "LiveKit",
+        "Sarvam AI",
         "LLM applications",
         "AI agents",
         "Agentic workflows",
@@ -179,6 +184,11 @@ const stackKeywords = ["Python","Express", "FastAPI", "LLMs", "Observability","E
             {audience.map((item) => <span>{item}</span>)}
           </div>
 
+          <div class="hero-cta" aria-label="Primary actions">
+            <a class="cta-primary" href="https://smriti-health-companion.onrender.com/" target="_blank" rel="noreferrer">Try Smriti Live</a>
+            <a class="cta-secondary" href={`mailto:${profile.email}`}>Get in touch</a>
+          </div>
+
           <div class="mini-proof" aria-label="Proof signals">
             {proof.map((item) => (
               <div>
@@ -192,12 +202,15 @@ const stackKeywords = ["Python","Express", "FastAPI", "LLMs", "Observability","E
         <section class="work-panel" aria-label="Featured work">
           <div class="panel-heading">
             <span>Proof</span>
-            <strong>3 projects</strong>
+            <strong>{projects.length} projects</strong>
           </div>
 
           <div class="project-stack">
-            {projects.map((project) => (
-              <article class="project-card">
+            {projects.map((project, idx) => {
+              const slug = project.name.toLowerCase().replace(/\s+/g, "-");
+              const detailHref = ["vani", "smriti"].includes(slug) ? `/projects/${slug}/` : null;
+              return (
+              <article class={`project-card${idx < 2 ? " project-card--featured" : ""}`}>
                 <div class="project-topline">
                   <span>{project.type}</span>
                   <strong>{project.signal}</strong>
@@ -208,12 +221,13 @@ const stackKeywords = ["Python","Express", "FastAPI", "LLMs", "Observability","E
                   {project.stack.slice(0, 4).map((tool) => <span>{tool}</span>)}
                 </div>
                 <div class="project-links">
+                  {detailHref && <a href={detailHref}>Details →</a>}
                   {project.links.map((link) => (
                     <a href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
                   ))}
                 </div>
               </article>
-            ))}
+            );})}
           </div>
         </section>
 
