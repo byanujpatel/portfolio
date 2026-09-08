@@ -1,93 +1,38 @@
 ---
 import "../styles/global.css";
-import {
-  agentSuggestions,
-  audience,
-  faqs,
-  profile,
-  projects,
-  proof,
-  valueProps,
-} from "@/data/portfolio";
+import AppIcon from "../components/os/AppIcon.astro";
+import Window from "../components/os/Window.astro";
+import { faqs, projects } from "../data/portfolio";
+import { ownerProfile } from "../data/owner-profile";
 
-const site = "https://byanujpatel.online";
-const ogImage = `${site}/og-image.png`;
-const title = "Anuj Patel (@byanujpatel) — Applied AI & Voice AI Engineer | LiveKit, Sarvam AI, LLM Apps";
-const description =
-  "Hire Anuj Patel (@byanujpatel) — Applied AI & Voice AI engineer in India. Builds voice agents with LiveKit + Sarvam AI, LLM apps, RAG with memory, FastAPI backends and full-stack MVPs. Prototype in 5-10 days. Try Smriti live.";
-const keywords =
-  "Anuj Patel, byanujpatel, hire voice AI developer, voice AI engineer, LiveKit developer, Sarvam AI developer, conversational AI freelancer, RAG chatbot memory, hire AI engineer India, voice agent developer";
-
-const schemaGraph = {
+const site = `https://${ownerProfile.identity.domain}`;
+const title = "Anuj Patel (@byanujpatel) — Applied AI & Voice AI Engineer";
+const description = "Anuj Patel is an Applied AI and Voice AI engineer building realtime voice agents, LLM products, RAG systems, memory, and FastAPI backends for founders and teams.";
+const keywords = "Anuj Patel, byanujpatel, voice AI engineer, AI voice agent developer, LiveKit developer, Sarvam AI developer, applied AI engineer, RAG memory systems, FastAPI developer, AI MVP freelancer";
+const schema = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Person",
       "@id": `${site}/#person`,
-      name: "Anuj Patel",
+      name: ownerProfile.identity.fullName,
       alternateName: "byanujpatel",
       url: `${site}/`,
-      image: ogImage,
-      email: `mailto:${profile.email}`,
-      jobTitle: profile.role,
-      description:
-        "Applied AI and Voice AI engineer building voice agents, LLM apps, FastAPI backends, RAG workflows and full-stack MVPs.",
+      email: `mailto:${ownerProfile.conversion.email}`,
+      jobTitle: "Applied AI & Voice AI Engineer",
+      description,
       address: { "@type": "PostalAddress", addressCountry: "IN" },
-      knowsAbout: [
-        "Voice AI",
-        "Voice agents",
-        "Conversational AI",
-        "LiveKit",
-        "Sarvam AI",
-        "LLM applications",
-        "AI agents",
-        "Agentic workflows",
-        "RAG pipelines",
-        "FastAPI",
-        "Python",
-        "Node.js",
-        "Express",
-        "LLM evals and observability",
-        "Full-stack MVP development",
-      ],
-      sameAs: profile.socials.map((social) => social.href),
+      knowsAbout: ["Voice AI", "LiveKit", "Sarvam AI", "Conversational AI", "LLMs", "RAG", "Memory systems", "FastAPI", "Python", "AI MVP development"],
+      sameAs: ownerProfile.socials.map((social) => social.href),
     },
-    {
-      "@type": "WebSite",
-      "@id": `${site}/#website`,
-      url: `${site}/`,
-      name: "Anuj Patel — Portfolio",
-      publisher: { "@id": `${site}/#person` },
-      inLanguage: "en",
-    },
-    {
-      "@type": "ProfilePage",
-      "@id": `${site}/#profilepage`,
-      url: `${site}/`,
-      mainEntity: { "@id": `${site}/#person` },
-      isPartOf: { "@id": `${site}/#website` },
-    },
+    { "@type": "WebSite", "@id": `${site}/#website`, url: `${site}/`, name: "Anuj OS", publisher: { "@id": `${site}/#person` }, inLanguage: "en" },
     {
       "@type": "FAQPage",
       "@id": `${site}/#faq`,
-      mainEntity: faqs.map((faq) => ({
-        "@type": "Question",
-        name: faq.q,
-        acceptedAnswer: { "@type": "Answer", text: faq.a },
-      })),
+      mainEntity: faqs.map((faq) => ({ "@type": "Question", name: faq.q, acceptedAnswer: { "@type": "Answer", text: faq.a } })),
     },
   ],
 };
-const contactLinks = [
-  { label: "Email", icon: "mail", href: `mailto:${profile.email}` },
-  ...profile.socials
-    .filter((social) => ["GitHub", "LinkedIn", "X"].includes(social.label))
-    .map((social) => ({
-      ...social,
-      icon: social.label === "GitHub" ? "github" : social.label === "LinkedIn" ? "linkedin" : "x",
-    })),
-];
-const stackKeywords = ["Python","Express", "FastAPI", "LLMs", "Observability","Evals"];
 ---
 
 <!doctype html>
@@ -98,254 +43,161 @@ const stackKeywords = ["Python","Express", "FastAPI", "LLMs", "Observability","E
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
-    <meta name="author" content={profile.name} />
+    <meta name="author" content={ownerProfile.identity.fullName} />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
     <link rel="canonical" href={`${site}/`} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
-
     <meta property="og:type" content="profile" />
-    <meta property="og:site_name" content="Anuj Patel — Portfolio" />
     <meta property="og:url" content={`${site}/`} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Anuj Patel — Applied AI & Backend Engineer" />
-    <meta property="og:locale" content="en_US" />
-
+    <meta property="og:image" content={`${site}/og-image.png`} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:creator" content="@byanujpatel" />
-
-    <meta name="theme-color" content="#f6efe4" />
-    <script type="application/ld+json" set:html={JSON.stringify(schemaGraph)} />
+    <meta name="twitter:image" content={`${site}/og-image.png`} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6511116190748300" crossorigin="anonymous" is:inline></script>
   </head>
-  <body>
-    <div class="page-shell">
-      <header class="topbar" aria-label="Portfolio header">
-        <a class="brand" href="/" aria-label={`${profile.name} home`}>
-          <span class="brand-mark">{profile.initials}</span>
-          <span class="brand-name-full">{profile.name}</span>
-          <span class="brand-name-short" aria-hidden="true">Anuj</span>
-        </a>
-        <div class="status-pill">
-          <span></span>
-          {profile.status}
-        </div>
-        <nav class="quick-links" aria-label="Contact links">
-          {contactLinks.map((link) => (
-            <a
-              href={link.href}
-              target={link.label === "Email" ? undefined : "_blank"}
-              rel="noreferrer"
-              aria-label={link.label}
-              title={link.label}
-            >
-              {link.icon === "mail" && (
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 6h16v12H4z" />
-                  <path d="m4 7 8 6 8-6" />
-                </svg>
-              )}
-              {link.icon === "github" && (
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.18-3.37-1.18-.46-1.15-1.11-1.46-1.11-1.46-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.64.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.55 9.55 0 0 1 12 6.01c.85 0 1.71.11 2.51.34 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2z" />
-                </svg>
-              )}
-              {link.icon === "linkedin" && (
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M5.2 8.9h3.2v10.3H5.2z" />
-                  <path d="M6.8 7.5a1.85 1.85 0 1 1 0-3.7 1.85 1.85 0 0 1 0 3.7z" />
-                  <path d="M10.5 8.9h3.1v1.4h.04c.43-.81 1.47-1.67 3.03-1.67 3.24 0 3.84 2.13 3.84 4.9v5.67h-3.2v-5.02c0-1.2-.02-2.74-1.67-2.74-1.67 0-1.93 1.3-1.93 2.65v5.11h-3.2z" />
-                </svg>
-              )}
-              {link.icon === "x" && (
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M4 4h4.9l3.7 5.1L17 4h3.1l-6 7 6.5 9H15.7l-4.1-5.6L6.8 20H3.7l6.5-7.5zM7.6 6.1l9.2 11.8h1.1L8.7 6.1z" />
-                </svg>
-              )}
-            </a>
-          ))}
+  <body class="os-body">
+    <main class="os-shell">
+      <header class="os-nav">
+        <a class="os-brand" href="/" aria-label="Anuj OS home"><span class="os-brand-mark">AP</span><span>{ownerProfile.identity.osName}</span></a>
+        <nav class="os-nav-links" aria-label="System navigation">
+          <button type="button" data-open-app="projects">Work</button>
+          <button type="button" data-open-app="proof">Proof</button>
+          <button type="button" data-open-app="contact">Contact</button>
+          <button type="button" data-open-search>Search</button>
         </nav>
+        <div class="os-status"><span class="status-dot"></span><span>Available</span><span class="os-clock" data-clock>--:-- IST</span><button type="button" data-theme="dark" aria-label="Toggle dark mode">◐</button></div>
       </header>
 
-      <main class="portfolio-card" aria-labelledby="hero-title">
-        <section class="identity-panel">
-          <p class="eyebrow">{profile.role}</p>
-          <h1 id="hero-title" aria-label="I build AI products that ship.">
-            I build AI products <span>that ship.</span>
-          </h1>
-          <p class="hero-copy">{profile.subhead}</p>
-
-          <div class="audience-row" aria-label="Target audience">
-            {audience.map((item) => <span>{item}</span>)}
-          </div>
-
-          <div class="hero-cta" aria-label="Primary actions">
-            <a class="cta-primary" href="https://smriti-health-companion.onrender.com/" target="_blank" rel="noreferrer">Try Smriti Live</a>
-            <a class="cta-secondary" href={`mailto:${profile.email}`}>Get in touch</a>
-          </div>
-
-          <div class="mini-proof" aria-label="Proof signals">
-            {proof.map((item) => (
-              <div>
-                <span></span>
-                <p>{item}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section class="work-panel" aria-label="Featured work">
-          <div class="panel-heading">
-            <span>Proof</span>
-            <strong>{projects.length} projects</strong>
-          </div>
-
-          <div class="project-stack">
-            {projects.map((project, idx) => {
-              const slug = project.name.toLowerCase().replace(/\s+/g, "-");
-              const detailHref = ["vani", "smriti"].includes(slug) ? `/projects/${slug}/` : null;
-              return (
-              <article class={`project-card${idx < 2 ? " project-card--featured" : ""}`}>
-                <div class="project-topline">
-                  <span>{project.type}</span>
-                  <strong>{project.signal}</strong>
-                </div>
-                <h2>{project.name}</h2>
-                <p>{project.solution}</p>
-                <div class="stack-line">
-                  {project.stack.slice(0, 4).map((tool) => <span>{tool}</span>)}
-                </div>
-                <div class="project-links">
-                  {detailHref && <a href={detailHref}>Details →</a>}
-                  {project.links.map((link) => (
-                    <a href={link.href} target="_blank" rel="noreferrer">{link.label}</a>
-                  ))}
-                </div>
-              </article>
-            );})}
-          </div>
-        </section>
-
-        <aside class="signal-panel" aria-label="Why work with Anuj">
-          <div class="value-strip">
-            {valueProps.map((item) => (
-              <article>
-                <span>{item.label}</span>
-                <p>{item.text}</p>
-
-              </article>
-            ))}
-          </div>
-
-          <div class="stack-card">
-            <span>Works with</span>
-            <p>{stackKeywords.join(" / ")}</p>
-          </div>
-
-          <section id="agent" class="agent-panel" aria-label="Portfolio agent">
-            <div class="agent-head">
-              <span>Ask the agent</span>
-              <strong>&lt;1s answers</strong>
-            </div>
-            <div id="chat-log" class="chat-log" aria-live="polite">
-              <strong>Try:</strong> Why hire Anuj?
-            </div>
-            <form id="chat-form" class="chat-form">
-              <input
-                id="chat-input"
-                name="question"
-                autocomplete="off"
-                maxlength="600"
-                placeholder="Ask fit / stack / projects..."
-                required
-              />
-              <button type="submit">Ask</button>
-            </form>
-            <div class="suggestions" aria-label="Suggested questions">
-              {agentSuggestions.map((question) => (
-                <button type="button" data-question={question}>{question}</button>
-              ))}
-            </div>
-          </section>
-        </aside>
-      </main>
-
-      <section class="faq-section" aria-labelledby="faq-title">
-        <h2 id="faq-title">FAQ</h2>
-        <div class="faq-grid">
-          {faqs.map((faq) => (
-            <details class="faq-item">
-              <summary>{faq.q}</summary>
-              <p>{faq.a}</p>
-            </details>
-          ))}
+      <section class="os-desktop" aria-label="Anuj OS desktop">
+        <div class="os-identity">
+          <p class="os-kicker">{ownerProfile.identity.roles.join(" · ")}</p>
+          <h1>{ownerProfile.identity.headline}</h1>
+          <p class="os-intro">{ownerProfile.identity.intro}</p>
+          <div class="os-actions"><a class="os-primary" href={ownerProfile.conversion.primaryUrl} target="_blank" rel="noreferrer">{ownerProfile.conversion.primaryLabel} ↗</a><button class="os-secondary" type="button" data-open-app="projects">Enter the portfolio</button></div>
+          <div class="os-proof-line"><span>VOICE AI</span><span>LLM + RAG</span><span>BACKEND SYSTEMS</span><span>AI MVPs</span></div>
         </div>
+
+        <div class="os-app-grid" aria-label="Portfolio applications">
+          {ownerProfile.apps.map((app) => <AppIcon app={app} />)}
+        </div>
+
+        <aside class="os-transmission" aria-label="Daily transmission">
+          <div><span class="os-kicker">Daily transmission</span><span class="os-live">● LIVE</span></div>
+          <strong>Build the sharp edge. Prove it with a working loop.</strong>
+          <button type="button" data-open-app="whiteboard">+ Add a quick sticky</button>
+        </aside>
+
+        <div class="os-wall-note"><span>Now exploring</span><strong>Voice · context · memory</strong><small>Systems that listen, remember, and act.</small></div>
       </section>
 
-      <footer class="site-footer" aria-label="Site footer">
-        <p>© {new Date().getFullYear()} Anuj Patel · Applied AI + Backend Engineer · India</p>
-        <nav aria-label="Footer social links">
-          {profile.socials.map((social) => (
-            <a href={social.href} target="_blank" rel="noreferrer">{social.label}</a>
-          ))}
-          <a href={`mailto:${profile.email}`}>Email</a>
-        </nav>
-      </footer>
-    </div>
+      <div class="os-dock" aria-label="Application dock">
+        {ownerProfile.apps.slice(0, 6).map((app) => <button type="button" data-open-app={app.id} aria-label={`Open ${app.label}`}><span>{app.id === "voice" ? "◉" : app.id === "projects" ? "▣" : app.id === "contact" ? "@" : app.id === "proof" ? "◆" : app.id === "systems" ? "⚙" : "✎"}</span><small>{app.label}</small></button>)}
+      </div>
+
+      <div class="os-call-tab"><span>Want this for your business?</span><a href={ownerProfile.conversion.bookingUrl} target="_blank" rel="noreferrer">Book an intro call ↗</a></div>
+
+      <div class="os-window-layer" aria-live="polite">
+        <Window id="projects" title="Projects / Main Drive" state="4 BUILDS">
+          <p class="window-lead">Selected work across voice AI, memory, LLM workflows, and backend systems.</p>
+          <div class="os-project-list">{projects.map((project) => <article class="os-project"><div><span>{project.type}</span><strong>{project.signal}</strong></div><h3>{project.name}</h3><p>{project.solution}</p><div class="os-tags">{project.stack.map((tool) => <small>{tool}</small>)}</div><div class="os-project-links">{project.name === "VANI" && <a href="/projects/vani/">Case file →</a>}{project.name === "Smriti" && <a href="/projects/smriti/">Case file →</a>}{project.links.map((link) => <a href={link.href} target="_blank" rel="noreferrer">{link.label} ↗</a>)}</div></article>)}</div>
+        </Window>
+
+        <Window id="voice" title="AI Voice Agent" state="DEMO MODE">
+          <div class="voice-app"><div class="voice-orb">◉</div><p class="window-lead">Talk to the AI Voice Agent</p><p>This is the next interface layer: realtime voice, context, and memory. Try the working Smriti voice companion while the portfolio agent is in text fallback mode.</p><a class="os-primary" href={ownerProfile.conversion.primaryUrl} target="_blank" rel="noreferrer">Open Smriti Live ↗</a><small>Voice sessions require microphone permission. No audio is stored by this portfolio.</small></div>
+        </Window>
+
+        <Window id="systems" title="Systems / How I Build" state="METHOD">
+          <div class="systems-list">{["Find the leverage", "Lock the system", "Build the sharp edge", "Integrate the workflow", "Prove and hand off"].map((step, index) => <article><b>0{index + 1}</b><div><h3>{step}</h3><p>{["Clarify the user, bottleneck, and smallest valuable loop.", "Choose the data, model, API, and interface boundaries.", "Build a focused prototype around the highest-signal behavior.", "Connect the product to real tools, memory, and operational context.", "Test with users, document the system, and make ownership clear."][index]}</p></div></article>)}</div>
+        </Window>
+
+        <Window id="proof" title="Proof / Signal Vault" state="LINKS">
+          <p class="window-lead">Proof should be something a visitor can open, use, or inspect.</p><div class="proof-links"><a href="/projects/vani/">VANI — Sarvam AI voice agent <span>Case file ↗</span></a><a href="/projects/smriti/">Smriti — voice health memory <span>Live + case file ↗</span></a><a href="https://x.com/byanujpatel/status/2089730103928598667" target="_blank" rel="noreferrer">VANI demo video on X <span>Watch ↗</span></a></div>
+        </Window>
+
+        <Window id="founder" title="Founder.txt" state="NOTE">
+          <div class="founder-note"><p><b>Who I am:</b> Anuj Patel — applied AI, Voice AI, and backend engineer.</p><p><b>What I build:</b> Voice agents, LLM products, RAG and memory systems, and full-stack MVPs.</p><p><b>How I work:</b> Small loop first. Real user early. Clear handoff always.</p><p><b>Currently exploring:</b> LiveKit, voice models, context intelligence, and useful memory.</p><p><b>Who I want to work with:</b> Founders and businesses with a real workflow worth improving.</p></div>
+        </Window>
+
+        <Window id="contact" title="Contact / Start a Build" state="OPEN">
+          <p class="window-lead">Have a workflow that should listen, remember, or act?</p><div class="contact-actions"><a class="os-primary" href={ownerProfile.conversion.bookingUrl} target="_blank" rel="noreferrer">Book an intro call ↗</a><a class="os-secondary" href={`mailto:${ownerProfile.conversion.email}`}>Email Anuj</a></div><div class="service-list">{ownerProfile.services.map((service) => <article><h3>{service.name}</h3><p>{service.text}</p></article>)}</div>
+        </Window>
+
+        <Window id="browser" title="Browser / Approved Links" state="WEB">
+          <p class="window-lead">Open verified project links in a new tab.</p><div class="proof-links"><a href="https://smriti-health-companion.onrender.com/" target="_blank" rel="noreferrer">Smriti live app <span>Open ↗</span></a><a href="https://repurposemycontent.streamlit.app" target="_blank" rel="noreferrer">Content Repurposing Engine <span>Open ↗</span></a><a href="https://crypto-trend-finder.streamlit.app" target="_blank" rel="noreferrer">TrendChain AI <span>Open ↗</span></a></div>
+        </Window>
+
+        <Window id="whiteboard" title="Whiteboard / Local Only" state="LOCAL">
+          <p class="window-lead">Leave a note for yourself. It stays in this browser only.</p><form class="sticky-form" data-sticky-form><input name="note" maxlength="180" placeholder="What should this portfolio remember?" aria-label="Sticky note text" required /><button type="submit">Add</button></form><div class="sticky-board" data-sticky-board></div><button class="os-secondary" type="button" data-clear-stickies>Clear board</button>
+        </Window>
+      </div>
+    </main>
+
+    <div class="os-search" data-search-panel hidden><div class="search-box"><input data-search-input placeholder="Search apps and projects..." aria-label="Search portfolio" /><button type="button" data-close-search>×</button><div data-search-results></div></div></div>
 
     <script>
-      const form = document.querySelector("#chat-form");
-      const input = document.querySelector("#chat-input");
-      const log = document.querySelector("#chat-log");
-      const suggestionButtons = document.querySelectorAll("[data-question]");
+      type Note = { id: string; text: string };
+      const root = document.documentElement;
+      const windows = document.querySelectorAll<HTMLElement>("[data-window]");
+      const openWindow = (id: string | undefined) => {
+        if (!id) return;
+        windows.forEach((win) => { win.hidden = win.dataset.window !== id; });
+      };
+      const closeWindows = () => windows.forEach((win) => { win.hidden = true; });
+      document.querySelectorAll<HTMLElement>("[data-open-app]").forEach((button) => button.addEventListener("click", () => openWindow(button.dataset.openApp)));
+      document.querySelectorAll("[data-window-close], [data-window-minimize]").forEach((button) => button.addEventListener("click", closeWindows));
+      document.querySelectorAll("[data-window-maximize]").forEach((button) => button.addEventListener("click", () => button.closest<HTMLElement>("[data-window]")?.classList.toggle("is-maximized")));
+      document.querySelector<HTMLButtonElement>("[data-theme]")?.addEventListener("click", () => root.classList.toggle("os-dark"));
 
-      function setLog(html: string) {
-        if (log) log.innerHTML = html;
-      }
+      const clock = document.querySelector<HTMLElement>("[data-clock]");
+      const tick = () => { if (clock) clock.textContent = `${new Intl.DateTimeFormat("en-IN", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "Asia/Kolkata" }).format(new Date())} IST`; };
+      tick();
+      setInterval(tick, 30000);
 
-      async function ask(question: string) {
-        const cleanQuestion = question.trim();
-        if (!cleanQuestion) return;
+      const searchPanel = document.querySelector<HTMLElement>("[data-search-panel]");
+      const searchInput = document.querySelector<HTMLInputElement>("[data-search-input]");
+      const searchResults = document.querySelector<HTMLElement>("[data-search-results]");
+      const searchItems = [...document.querySelectorAll<HTMLElement>("[data-open-app]")]
+        .map((item) => ({ id: item.dataset.openApp, label: item.getAttribute("aria-label") || item.textContent?.trim() || "" }))
+        .filter((item, index, all) => all.findIndex((candidate) => candidate.id === item.id) === index);
+      const renderSearch = () => {
+        if (!searchInput || !searchResults) return;
+        const query = searchInput.value.toLowerCase();
+        searchResults.innerHTML = searchItems
+          .filter((item) => item.label.toLowerCase().includes(query))
+          .map((item) => `<button type="button" data-search-app="${item.id}">${item.label}</button>`)
+          .join("");
+        searchResults.querySelectorAll<HTMLButtonElement>("[data-search-app]").forEach((item) => item.addEventListener("click", () => { if (searchPanel) searchPanel.hidden = true; openWindow(item.dataset.searchApp); }));
+      };
+      document.querySelector("[data-open-search]")?.addEventListener("click", () => { if (searchPanel) searchPanel.hidden = false; searchInput?.focus(); renderSearch(); });
+      document.querySelector("[data-close-search]")?.addEventListener("click", () => { if (searchPanel) searchPanel.hidden = true; });
+      searchInput?.addEventListener("input", renderSearch);
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") { if (searchPanel) searchPanel.hidden = true; closeWindows(); }
+        if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") { event.preventDefault(); if (searchPanel) searchPanel.hidden = false; searchInput?.focus(); renderSearch(); }
+      });
 
-        setLog(`<strong>You:</strong> ${cleanQuestion}<br><br>Thinking...`);
-
-        try {
-          const response = await fetch("/api/ask", {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({ question: cleanQuestion }),
-          });
-          const data = await response.json();
-
-          if (!response.ok) {
-            throw new Error(data?.error || "The agent could not answer.");
-          }
-
-          setLog(`<strong>Agent:</strong> ${data.answer}`);
-        } catch (error) {
-          const message = error instanceof Error ? error.message : "Something went wrong.";
-          setLog(`<strong>Agent:</strong> ${message}`);
-        }
-      }
-
-      form?.addEventListener("submit", (event) => {
+      const board = document.querySelector<HTMLElement>("[data-sticky-board]");
+      const stickyForm = document.querySelector<HTMLFormElement>("[data-sticky-form]");
+      const key = "personal-os-whiteboard-v1";
+      let notes: Note[] = [];
+      try { notes = JSON.parse(localStorage.getItem(key) || "[]") as Note[]; } catch { notes = []; }
+      const escapeHtml = (value: string) => value.replace(/[&<>]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[char] || char);
+      const drawNotes = () => {
+        if (!board) return;
+        board.innerHTML = notes.map((note) => `<article class="sticky-note"><button type="button" data-delete-note="${note.id}" aria-label="Delete note">×</button><p>${escapeHtml(note.text)}</p></article>`).join("");
+        board.querySelectorAll<HTMLButtonElement>("[data-delete-note]").forEach((button) => button.addEventListener("click", () => { notes = notes.filter((note) => note.id !== button.dataset.deleteNote); localStorage.setItem(key, JSON.stringify(notes)); drawNotes(); }));
+      };
+      drawNotes();
+      stickyForm?.addEventListener("submit", (event) => {
         event.preventDefault();
-        if (!(input instanceof HTMLInputElement)) return;
-        ask(input.value);
+        const input = stickyForm.querySelector<HTMLInputElement>("input");
+        if (input?.value.trim()) { notes.push({ id: crypto.randomUUID(), text: input.value.trim() }); localStorage.setItem(key, JSON.stringify(notes)); input.value = ""; drawNotes(); }
       });
-
-      suggestionButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-          const question = button.getAttribute("data-question") || "";
-          if (input instanceof HTMLInputElement) input.value = question;
-          ask(question);
-        });
-      });
+      document.querySelector("[data-clear-stickies]")?.addEventListener("click", () => { notes = []; localStorage.removeItem(key); drawNotes(); });
     </script>
   </body>
 </html>

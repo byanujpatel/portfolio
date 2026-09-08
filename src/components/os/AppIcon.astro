@@ -1,0 +1,10 @@
+---
+const { app } = Astro.props;
+---
+
+<button class="os-app" type="button" data-open-app={app.id} aria-label={`Open ${app.label}`}>
+  <span class="os-app-icon" aria-hidden="true">{app.id === "voice" ? "◉" : app.id === "projects" ? "▣" : app.id === "contact" ? "@" : app.id === "whiteboard" ? "✎" : app.id === "browser" ? "⌁" : app.id === "founder" ? "TXT" : app.id === "systems" ? "⚙" : "+"}</span>
+  <strong>{app.label}</strong>
+  <small>{app.description}</small>
+  <span class="os-app-badge">{app.badge}</span>
+</button>
